@@ -15,38 +15,40 @@ const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   color: white;
+  font-family: "Poppins", sans-serif;
   .title {
     h1 {
       span {
         margin-left: 0.5rem;
         color: #ffc107;
-        font-family: "Poppins", sans-serif;
         letter-spacing: 0.2rem;
       }
     }
   }
   .search {
-    background-color: #212121;
+    background-color: var(--white);
     display: flex;
+    border-style: solid;
+    border-color: var(--blue);
     align-items: center;
     gap: 1rem;
-    padding: 1rem 66rem 1rem 1rem;
+    width: 100%;
+    padding: 1rem 1rem 1rem 1rem;
     border-radius: 1rem;
     svg {
-      color: #ffc107;
+      color: var(--purple);
     }
     input {
       background-color: transparent;
       border: none;
-      color: #ffc107;
-      font-family: "Poppins", sans-serif;
+      color: var(--blue);
+      width: 100%;
       letter-spacing: 0.3rem;
       &:focus {
         outline: none;
       }
       &::placeholder {
-        color: #ffc107;
-        font-family: "Poppins", sans-serif;
+        color: var(--plomo);
       }
     }
   }

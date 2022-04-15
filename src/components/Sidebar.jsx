@@ -5,6 +5,7 @@ import { RiDashboard2Fill } from "react-icons/ri";
 import { FaAddressCard, FaTaxi } from "react-icons/fa";
 import { GiTwirlCenter } from "react-icons/gi";
 import { BsFillChatTextFill } from "react-icons/bs";
+import { BiCalendar } from "react-icons/bi";
 import { IoSettings } from "react-icons/io5";
 import { FiLogOut } from "react-icons/fi";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -77,44 +78,8 @@ export default function Sidebar() {
                 onClick={() => setCurrentLink(2)}
               >
                 <a href="#">
-                  <RiDashboard2Fill />
-                  <span> Riders</span>
-                </a>
-              </li>
-              <li
-                className={currentLink === 3 ? "active" : "none"}
-                onClick={() => setCurrentLink(3)}
-              >
-                <a href="#">
-                  <FaAddressCard />
-                  <span> Payment Details</span>
-                </a>
-              </li>
-              <li
-                className={currentLink === 4 ? "active" : "none"}
-                onClick={() => setCurrentLink(4)}
-              >
-                <a href="#">
-                  <GiTwirlCenter />
-                  <span> Learning Center</span>
-                </a>
-              </li>
-              <li
-                className={currentLink === 5 ? "active" : "none"}
-                onClick={() => setCurrentLink(5)}
-              >
-                <a href="#">
-                  <BsFillChatTextFill />
-                  <span> FAQs</span>
-                </a>
-              </li>
-              <li
-                className={currentLink === 6 ? "active" : "none"}
-                onClick={() => setCurrentLink(6)}
-              >
-                <a href="#">
-                  <IoSettings />
-                  <span> Settings</span>
+                  <BiCalendar />
+                  <span> Ordenes</span>
                 </a>
               </li>
             </ul>
@@ -193,7 +158,7 @@ export default function Sidebar() {
 const Section = styled.section`
   position: fixed;
   left: 0;
-  background-color: #0a006c;
+  background-color: var(--appleSilver);
   height: 100vh;
   width: 18vw;
   display: flex;
@@ -218,43 +183,44 @@ const Section = styled.section`
       align-items: center;
       gap: 2rem;
       svg {
-        color: #ffffff;
+        color: var(--appleLightSilver);
         font-size: 2rem;
       }
       span {
-        font-size: 2rem;
-        color: #ffffff;
-        font-family: "Poppins", sans-serif;
+        font-size: 2.3rem;
+        color: white;
       }
     }
     .links {
       display: flex;
       justify-content: center;
+      font-size: 1.4rem;
       ul {
         list-style-type: none;
         display: flex;
+        width: 90%;
         flex-direction: column;
         gap: 1rem;
         li {
           padding: 0.6rem 1rem;
           border-radius: 0.6rem;
           &:hover {
-            background-color: #ffffff;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.5);
             a {
-              color: #0a006c;
             }
           }
           a {
             text-decoration: none;
             display: flex;
             gap: 1rem;
-            color: white;
+            color: var(--appleLightSilver);
           }
         }
         .active {
-          background-color: #ffffff;
+          background-color: rgba(255, 255, 255, 0.5);
           a {
-            color: #0a006c;
+            color: white;
           }
         }
       }

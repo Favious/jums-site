@@ -45,7 +45,7 @@ const Section = styled.section`
   ${cardStyles};
   .title {
     h2 {
-      color: #ffc107;
+      color: var(--blue);
       font-family: "Permanent Marker", cursive;
       letter-spacing: 0.3rem;
     }

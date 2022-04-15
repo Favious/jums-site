@@ -183,8 +183,8 @@ export default function Earnings() {
               animationDuration={2000}
               type="monotone"
               dataKey="data"
-              stroke="#ffc107"
-              fill="#8068233e"
+              stroke="#246ace"
+              fill="#b7d0f4"
               strokeWidth={4}
             />
           </AreaChart>
@@ -210,18 +210,18 @@ const Section = styled.section`
         font-size: 2rem;
       }
       .growth {
-        background-color: #d7e41e1d;
+        background-color: #b7d0f4;
         padding: 0.5rem;
         border-radius: 1rem;
         transition: 0.3s ease-in-out;
         &:hover {
-          background-color: #ffc107;
+          background-color: var(--blue);
           span {
-            color: black;
+            color: #b7d0f4;
           }
         }
         span {
-          color: #ffc107;
+          color: var(--blue);
         }
       }
     }

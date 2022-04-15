@@ -64,7 +64,7 @@ const Section = styled.section`
   gap: 1rem;
   .title {
     h2 {
-      color: #ffc107;
+      color: var(--blue);
       font-family: "Permanent Marker", cursive;
       letter-spacing: 0.3rem;
     }
@@ -91,20 +91,20 @@ const Section = styled.section`
         }
       }
       &__amount {
-        background-color: #d7e41e1d;
+        background-color: #b7d0f4;
         padding: 0.2rem 0.5rem;
         width: 4rem;
         border-radius: 1rem;
         text-align: center;
         transition: 0.3s ease-in-out;
         &:hover {
-          background-color: #ffc107;
+          background-color: var(--blue);
           span {
-            color: black;
+            color: white;
           }
         }
         span {
-          color: #ffc107;
+          color: var(--blue);
         }
       }
     }
@@ -115,7 +115,7 @@ const Section = styled.section`
     justify-content: flex-end;
     align-items: center;
     text-decoration: none;
-    color: #ffc107;
+    color: var(--blue);
     font-weight: bold;
     margin-top: 1rem;
     gap: 0.5rem;

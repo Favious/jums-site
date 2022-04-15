@@ -60,15 +60,16 @@ const Section = styled.section`
     gap: 1rem;
     transition: 0.5s ease-in-out;
     &:hover {
-      background-color: #ffc107;
-      color: black;
+      background-color: var(--blue);
+      color: white;
       svg {
         color: white;
       }
     }
     .logo {
-      background-color: black;
+      background-color: var(--blue);
       border-radius: 3rem;
+      color: white;
       display: flex;
       justify-content: center;
       align-items: center;
