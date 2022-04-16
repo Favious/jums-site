@@ -12,13 +12,15 @@ import {
   Navigate,
   Outlet,
 } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
 
 export default function App() {
   return (
     <Div>
       <GlobalStyle />
-      <Sidebar />
-      <Dashboard />
+      <LoginPage />
+      {/* <Sidebar />
+      <Dashboard /> */}
     </Div>
   );
 }
