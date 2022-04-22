@@ -11,11 +11,26 @@ import { FiLogOut } from "react-icons/fi";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { VscChromeClose } from "react-icons/vsc";
 import scrollreveal from "scrollreveal";
+import { useAuth } from "../contexts/AuthContext";
+import { Link, useHistory } from "react-router-dom";
+
 export default function Sidebar() {
   const [currentLink, setCurrentLink] = useState(1);
   const [navbarState, setNavbarState] = useState(false);
   const html = document.querySelector("html");
   html.addEventListener("click", () => setNavbarState(false));
+
+  const history = useHistory();
+  const { logout, isSignedIn } = useAuth();
+
+  async function handleSignOut(e) {
+    e.preventDefault();
+
+    try {
+      await logout();
+      history.push("/login");
+    } catch {}
+  }
 
   useEffect(() => {
     const sr = scrollreveal({
@@ -43,7 +58,7 @@ export default function Sidebar() {
     );
   }, []);
 
-  return (
+  return isSignedIn() ? (
     <>
       <Section>
         <div className="top">
@@ -68,27 +83,31 @@ export default function Sidebar() {
                 className={currentLink === 1 ? "active" : "none"}
                 onClick={() => setCurrentLink(1)}
               >
-                <a href="#">
-                  <MdSpaceDashboard />
-                  <span> Dashboard</span>
+                <a>
+                  <Link to="/">
+                    <MdSpaceDashboard />
+                    <span> Dashboard</span>
+                  </Link>
                 </a>
               </li>
               <li
                 className={currentLink === 2 ? "active" : "none"}
                 onClick={() => setCurrentLink(2)}
               >
-                <a href="#">
-                  <BiCalendar />
-                  <span> Ordenes</span>
+                <a>
+                  <Link to="/orders">
+                    <BiCalendar />
+                    <span> Ordenes</span>
+                  </Link>
                 </a>
               </li>
             </ul>
           </div>
         </div>
         <div className="logout">
-          <a href="#">
+          <a onClick={handleSignOut}>
             <FiLogOut />
-            <span className="logout">Logout</span>
+            <span className="logout">Cerrar sesión</span>
           </a>
         </div>
       </Section>
@@ -153,6 +172,8 @@ export default function Sidebar() {
         </div>
       </ResponsiveNav>
     </>
+  ) : (
+    <></>
   );
 }
 const Section = styled.section`

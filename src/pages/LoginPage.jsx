@@ -1,47 +1,78 @@
-import React, { useEffect } from "react";
+import React, { useRef, useState } from "react";
+import { useAuth } from "../contexts/AuthContext";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 export default function LoginPage() {
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const { login } = useAuth();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const history = useHistory();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+      setError("");
+      setLoading(true);
+      await login(emailRef.current.value, passwordRef.current.value);
+      history.push("/");
+    } catch {
+      setError("¡Usuario o contraseña incorrectos!");
+    }
+
+    setLoading(false);
+  }
+
   return (
     <Section>
-      <div class="main">
-        <div class="container">
-          <section class="wrapper">
-            <div class="heading">
-              <h1 class="welcome">Bienvenido a JUMSite!</h1>
-              <h1 class="text text-large">Iniciar sesion</h1>
-              <p class="text text-normal">Por favor ingrese su cuenta</p>
+      <div className="main">
+        <div className="container">
+          <section className="wrapper">
+            <div className="heading">
+              <h1 className="welcome">¡Bienvenido a JUMSite!</h1>
+              <h1 className="text text-large">Iniciar sesión</h1>
+              <p className="text text-normal">Por favor ingrese su cuenta</p>
             </div>
-            <form name="login" class="form">
-              <div class="input-control">
-                <label for="email" class="input-label" hidden>
-                  Correo electronico
+            <form name="login" className="form">
+              <div className="input-control">
+                <label className="input-label" hidden>
+                  Correo electrónico
                 </label>
                 <input
                   type="email"
                   name="email"
-                  class="input-field"
-                  placeholder="Correo electronico"
+                  className="input-field"
+                  ref={emailRef}
+                  onChange={() => setError("")}
+                  placeholder="Correo electrónico"
                 />
               </div>
-              <div class="input-control">
-                <label for="password" class="input-label" hidden>
-                  Contrasenia
+              <div className="input-control">
+                <label className="input-label" hidden>
+                  Contraseña
                 </label>
                 <input
                   type="password"
                   name="password"
-                  class="input-field"
-                  placeholder="Contrasenia"
+                  className="input-field"
+                  ref={passwordRef}
+                  onChange={() => setError("")}
+                  placeholder="Contraseña"
                 />
               </div>
-              <div class="input-control">
+              {error && <h2 className="text text-error">{error}</h2>}
+
+              <div className="input-control">
                 <input
                   type="button"
                   name="submit"
-                  class="input-submit"
-                  value="Ingresar"
-                  disabled
+                  className="input-submit"
+                  value={!loading ? "Ingresar" : "..."}
+                  onClick={handleSubmit}
+                  disabled={loading}
                 />
               </div>
             </form>
@@ -159,6 +190,16 @@ const Section = styled.section`
       font-size: 1rem;
       font-weight: 400;
       color: var(--color-black);
+    }
+
+    &-error {
+      font-size: 1rem;
+      font-weight: 400;
+      color: red;
+      text-align: center;
+      background-color: pink;
+      margin-bottom: 1rem;
+      border: red;
     }
 
     &-links {
