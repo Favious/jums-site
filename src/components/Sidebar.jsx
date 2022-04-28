@@ -2,17 +2,18 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { MdSpaceDashboard } from "react-icons/md";
 import { RiDashboard2Fill } from "react-icons/ri";
-import { FaAddressCard, FaTaxi } from "react-icons/fa";
+import { FaAddressCard } from "react-icons/fa";
 import { GiTwirlCenter } from "react-icons/gi";
 import { BsFillChatTextFill } from "react-icons/bs";
 import { BiCalendar } from "react-icons/bi";
+import { BsWrench } from "react-icons/bs";
 import { IoSettings } from "react-icons/io5";
 import { FiLogOut } from "react-icons/fi";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { VscChromeClose } from "react-icons/vsc";
 import scrollreveal from "scrollreveal";
 import { useAuth } from "../contexts/AuthContext";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Sidebar() {
   const [currentLink, setCurrentLink] = useState(1);
@@ -20,7 +21,7 @@ export default function Sidebar() {
   const html = document.querySelector("html");
   html.addEventListener("click", () => setNavbarState(false));
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const { logout, isSignedIn } = useAuth();
 
   async function handleSignOut(e) {
@@ -28,7 +29,7 @@ export default function Sidebar() {
 
     try {
       await logout();
-      history.push("/login");
+      navigate("/login");
     } catch {}
   }
 
@@ -79,28 +80,39 @@ export default function Sidebar() {
           </div>
           <div className="links">
             <ul>
-              <li
-                className={currentLink === 1 ? "active" : "none"}
-                onClick={() => setCurrentLink(1)}
-              >
-                <a>
-                  <Link to="/">
+              <Link to="/" style={{ textDecoration: "none" }}>
+                <li
+                  className={currentLink === 1 ? "active" : "none"}
+                  onClick={() => setCurrentLink(1)}
+                >
+                  <a>
                     <MdSpaceDashboard />
                     <span> Dashboard</span>
-                  </Link>
-                </a>
-              </li>
-              <li
-                className={currentLink === 2 ? "active" : "none"}
-                onClick={() => setCurrentLink(2)}
-              >
-                <a>
-                  <Link to="/orders">
+                  </a>
+                </li>
+              </Link>
+              <Link to="/create_order" style={{ textDecoration: "none" }}>
+                <li
+                  className={currentLink === 2 ? "active" : "none"}
+                  onClick={() => setCurrentLink(2)}
+                >
+                  <a>
+                    <BsWrench />
+                    <span> Crear orden</span>
+                  </a>
+                </li>
+              </Link>
+              <Link to="/orders" style={{ textDecoration: "none" }}>
+                <li
+                  className={currentLink === 3 ? "active" : "none"}
+                  onClick={() => setCurrentLink(3)}
+                >
+                  <a>
                     <BiCalendar />
                     <span> Ordenes</span>
-                  </Link>
-                </a>
-              </li>
+                  </a>
+                </li>
+              </Link>
             </ul>
           </div>
         </div>

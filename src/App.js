@@ -4,7 +4,7 @@ import Dashboard from "./components/Dashboard";
 import Sidebar from "./components/Sidebar";
 import { GlobalStyle } from "./GlobalStyle";
 import { AuthProvider } from "./contexts/AuthContext";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import PrivateRoute from "./components/PrivateRoute";
 import MainComponent from "./components/MainComponent";
@@ -16,11 +16,19 @@ export default function App() {
       <Router>
         <AuthProvider>
           <Sidebar />
-          <Switch>
-            <PrivateRoute exact path="/" component={Dashboard} />
-            <PrivateRoute path="/orders" component={MainComponent} />
-            <Route path="/login" component={LoginPage} />
-          </Switch>
+          <Routes>
+            <Route element={<PrivateRoute />}>
+              <Route exact path="/" element={<Dashboard />}></Route>
+            </Route>
+            <Route element={<PrivateRoute />}>
+              <Route path="/orders" element={<MainComponent />}></Route>
+            </Route>
+            <Route element={<PrivateRoute />}>
+              <Route path="/create_order" element={<MainComponent />}></Route>
+            </Route>
+
+            <Route path="/login" element={<LoginPage />} />
+          </Routes>
         </AuthProvider>
       </Router>
     </Div>

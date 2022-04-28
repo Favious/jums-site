@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 export default function LoginPage() {
@@ -9,7 +9,7 @@ export default function LoginPage() {
   const { login } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -18,7 +18,7 @@ export default function LoginPage() {
       setError("");
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
-      history.push("/");
+      navigate("/");
     } catch {
       setError("¡Usuario o contraseña incorrectos!");
     }
