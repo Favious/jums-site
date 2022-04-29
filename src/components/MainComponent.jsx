@@ -1,8 +1,34 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
+import scrollreveal from "scrollreveal";
 import styled from "styled-components";
 
 export default function MainComponent() {
-  return <Section>ESA CABRONA DE IHC</Section>;
+  useEffect(() => {
+    const sr = scrollreveal({
+      origin: "bottom",
+      distance: "80px",
+      duration: 2000,
+      reset: false,
+    });
+    sr.reveal(
+      `
+        nav,
+        .row__one,
+        .row__two
+    `,
+      {
+        opacity: 0,
+        interval: 100,
+      }
+    );
+  }, []);
+  return (
+    <Section>
+      <div className="grid">
+        <div className="row__one">ESA CABRONA DE IHC</div>
+      </div>
+    </Section>
+  );
 }
 
 const Section = styled.section`
