@@ -265,6 +265,7 @@ const Section = styled.section`
     border-radius: 0.6rem;
     &:hover {
       background-color: #da0037;
+      cursor: pointer;
     }
     a {
       text-decoration: none;
